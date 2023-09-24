@@ -1,0 +1,193 @@
+---
+title: "Problem Set 2"
+author: "Yangning Tan"
+format: html
+editor: visual
+---
+
+## Problem 1 - Dice Game
+
+a.  Write functions taking in as input the number of dice to roll each returning your total winnings or loses.
+
+    Version 1: Implement this game using a loop over the die rolls.
+
+    ```{r}
+    play_dice_v1 <- function(n) {
+      total_winnings <- 0
+      for (i in 1:n) {
+        roll <- sample(1:6, 1)  # Roll a 6-sided dice
+        if (roll %% 2 == 0) {   # the roll is even
+          total_winnings <- total_winnings + roll - 2
+        } else { # the roll is odd
+          total_winnings <- total_winnings - 2
+        }
+      }
+      return(total_winnings)
+    }
+    ```
+
+    Version 2: Implement this game using built-in R vectorized functions.
+
+    ```{r}
+    play_dice_v2 <- function(n) {
+      rolls <- sample(1:6, n, replace = TRUE)  # Roll a 6-sided dice n times
+      winnings <- sum(rolls[rolls %% 2 == 0]) - 2 * n
+      return(winnings)
+    }
+    ```
+
+    Version 3: Implement this by collapsing the die rolls into a single `table()`.
+
+    ```{r}
+    play_dice_v3 <- function(n) {
+      rolls <- sample(1:6, n, replace = TRUE)  # Roll a 6-sided dice n times
+      roll_table <- table(rolls)
+      times <- as.numeric(roll_table[as.numeric(names(roll_table)) %% 2 == 0])
+      names <- as.numeric(names(roll_table[as.numeric(names(roll_table)) %% 2 == 0]))
+      winnings <- as.numeric(t(times) %*% (names)) - 2 * n
+      return(winnings)
+    }
+    ```
+
+    Version 4: Implement this game by using one of the "`apply`" functions.
+
+    ```{r}
+    play_dice_v4 <- function(n) {
+      rolls <- sample(1:6, n, replace = TRUE)  # Roll a 6-sided dice n times
+      winnings <- sum(sapply(rolls, function(roll) if (roll %% 2 == 0) roll - 2 else -2))
+      return(winnings)
+    }
+    ```
+
+b.  Demonstrate that all versions work. Do so by running each a few times, once with an input of 3, and once with an input of 3000.
+
+    Version 1:
+
+    ```{r}
+    play_dice_v1(3)
+    play_dice_v1(3000)
+    ```
+
+    Version 2:
+
+    ```{r}
+    play_dice_v2(3)
+    play_dice_v2(3000)
+    ```
+
+    Version 3:
+
+    ```{r}
+    play_dice_v3(3)
+    play_dice_v3(3000)
+    ```
+
+    Version 4:
+
+    ```{r}
+    play_dice_v4(3)
+    play_dice_v4(3000)
+    ```
+
+    All versions work.
+
+c.  Demonstrate that the four versions give the same result. Test with inputs 3 and 3000. (You may need to add a way to control the randomization.)
+
+    Test with input 3.
+
+    ```{r}
+    set.seed(1) # set a seed for randomization}
+    play_dice_v1(3)
+    set.seed(123)
+    play_dice_v2(3)
+    set.seed(123)
+    play_dice_v3(3)
+    set.seed(123)
+    play_dice_v4(3)
+    ```
+
+    Test with input 300.
+
+    ```{r}
+    set.seed(2) # set a seed for randomization}
+    play_dice_v1(3000)
+    set.seed(2)
+    play_dice_v2(3000)
+    set.seed(2)
+    play_dice_v3(3000)
+    set.seed(2)
+    play_dice_v4(3000)
+    ```
+
+    The four versions give the same result.
+
+d.  Use the *microbenchmark* package to clearly demonstrate the speed of the implementations. Compare performance with a low input (100) and a large input (10000). Discuss the results.
+
+    ```{r}
+    library(microbenchmark)
+    ```
+
+    We first check the result with a low input.
+
+    ```{r}
+    microbenchmark(play_dice_v1(100))
+    microbenchmark(play_dice_v2(100))
+    microbenchmark(play_dice_v3(100))
+    microbenchmark(play_dice_v4(100))
+    ```
+
+    With a low input, the difference between each implementation seems rather small. Each of them seems to execute fast enough because the input is rather limited.
+
+    With a large input.
+
+    ```{r}
+    microbenchmark(play_dice_v1(10000))
+    microbenchmark(play_dice_v2(10000))
+    microbenchmark(play_dice_v3(10000))
+    microbenchmark(play_dice_v4(10000))
+    ```
+
+    However, with a large input, the difference is much more obvious. Versions that use vectorized operations (such as Version 2) and built-in functions (Version 3) are likely to be faster than the loop-based Version 1 and Version 4.
+
+e.  Do you think this is a fair game? Defend your decision with evidence based upon a Monte Carlo simulation.
+
+    ```{r}
+    # Set the number of tials, which should be a relatively large number
+    num_trials <- 10000
+
+    # Initialize a vector to store the results of each trial
+    results <- numeric(num_trials)
+
+    # Simulate the game for each trial
+    for (i in 1:num_trials) {
+      winnings <- play_dice_v2(10)  # Using Version 2 as an example
+      results[i] <- winnings
+    }
+
+    # Calculate the average winnings
+    average_winnings <- mean(results)
+
+    # Check if the game is fair
+    if (abs(average_winnings) < 1e-2) {
+      cat("The Monte Carlo simulation suggests that the game is approximately fair.\n")
+    } else {
+      cat("The Monte Carlo simulation suggests that the game is not fair.\n")
+    }
+    ```
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
