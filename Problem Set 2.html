@@ -69,6 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="Problem Set 2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Problem Set 2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -152,11 +154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v1</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -2</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v1</span>(<span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -42</code></pre>
+<pre><code>[1] 284</code></pre>
 </div>
 </div>
 <p>Version 2:</p>
@@ -167,29 +169,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v2</span>(<span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 76</code></pre>
+<pre><code>[1] 40</code></pre>
 </div>
 </div>
 <p>Version 3:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v3</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] -4</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v3</span>(<span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20</code></pre>
+<pre><code>[1] 82</code></pre>
 </div>
 </div>
 <p>Version 4:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v4</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -2</code></pre>
+<pre><code>[1] -4</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_dice_v4</span>(<span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -208</code></pre>
+<pre><code>[1] 292</code></pre>
 </div>
 </div>
 <p>All versions work.</p></li>
@@ -254,26 +256,26 @@ avoid potential integer overflows</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-              expr     min      lq     mean   median       uq      max neval
- play_dice_v1(100) 233.167 248.091 284.2575 254.7535 267.0945 2735.643   100</code></pre>
+              expr     min     lq     mean  median      uq      max neval
+ play_dice_v1(100) 233.126 247.23 283.2128 259.612 273.224 2459.139   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v2</span>(<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-              expr   min    lq    mean median    uq    max neval
- play_dice_v2(100) 5.494 5.863 6.50055   6.15 6.806 15.908   100</code></pre>
+              expr   min     lq    mean median     uq    max neval
+ play_dice_v2(100) 5.371 5.8015 6.53376  6.068 6.3345 15.252   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v3</span>(<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-              expr    min      lq     mean median    uq     max neval
- play_dice_v3(100) 41.123 41.8405 46.21725 42.271 43.05 168.141   100</code></pre>
+              expr    min    lq     mean  median      uq     max neval
+ play_dice_v3(100) 41.041 43.87 48.58336 47.3345 48.8515 130.421   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v4</span>(<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-              expr    min      lq     mean median     uq   max neval
- play_dice_v4(100) 37.843 38.5195 39.99099  38.95 39.975 52.89   100</code></pre>
+              expr    min     lq     mean median      uq    max neval
+ play_dice_v4(100) 37.925 38.499 39.25791 38.827 39.1345 53.505   100</code></pre>
 </div>
 </div>
 <p>With a low input, the difference between each implementation seems rather small. Each of them seems to execute fast enough because the input is rather limited.</p>
@@ -282,33 +284,35 @@ avoid potential integer overflows</code></pre>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v1</span>(<span class="dv">10000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                expr     min       lq     mean   median       uq      max neval
- play_dice_v1(10000) 24.9467 26.52226 27.27393 26.95268 27.44731 48.33515   100</code></pre>
+                expr      min       lq     mean   median       uq      max
+ play_dice_v1(10000) 25.55833 25.99177 26.98023 26.48918 27.28062 47.68845
+ neval
+   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v2</span>(<span class="dv">10000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-                expr     min       lq    mean   median      uq     max neval
- play_dice_v2(10000) 293.806 300.5915 312.723 307.0695 318.324 372.526   100</code></pre>
+                expr     min      lq     mean   median      uq     max neval
+ play_dice_v2(10000) 297.373 302.539 307.8698 305.5935 311.067 336.774   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v3</span>(<span class="dv">10000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-                expr     min      lq     mean   median      uq     max neval
- play_dice_v3(10000) 514.099 544.029 596.4254 556.9235 580.273 3838.42   100</code></pre>
+                expr     min       lq     mean   median      uq     max neval
+ play_dice_v3(10000) 517.707 553.5205 605.3576 568.2805 577.362 4299.67   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">play_dice_v4</span>(<span class="dv">10000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                expr     min       lq     mean   median       uq      max neval
- play_dice_v4(10000) 3.12748 3.261324 3.637838 3.359581 3.617184 7.746622   100</code></pre>
+                expr      min       lq     mean  median       uq      max neval
+ play_dice_v4(10000) 3.088981 3.159911 3.495369 3.22219 3.513331 7.280083   100</code></pre>
 </div>
 </div>
 <p>However, with a large input, the difference is much more obvious. Versions that use vectorized operations (such as Version 2) and built-in functions (Version 3) are likely to be faster than the loop-based Version 1 and Version 4.</p></li>
 <li><p>Do you think this is a fair game? Defend your decision with evidence based upon a Monte Carlo simulation.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of tials, which should be a relatively large number</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>num_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>num_trials <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize a vector to store the results of each trial</span></span>
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_trials)</span>
@@ -329,27 +333,90 @@ avoid potential integer overflows</code></pre>
 <span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"The Monte Carlo simulation suggests that the game is not fair.</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The Monte Carlo simulation suggests that the game is not fair.</code></pre>
+<pre><code>The Monte Carlo simulation suggests that the game is approximately fair.</code></pre>
 </div>
-</div></li>
+</div>
+<p>Through Monte Carlo numerical experiments, the average amount players might win seems to converge to <span class="math inline">\(0\)</span>. Therefore, it should be a fair game.</p></li>
 </ol>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="problem-2---linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2---linear-regression">Problem 2 - Linear Regression</h2>
+<p>We first import the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cars.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>You can add options to executable code like this</p>
+<ol type="a">
+<li><p>The names of the variables in this data are way too long. Rename the columns of the data to more reasonable lengths.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data)[<span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"height"</span>, <span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"driveline"</span>, <span class="st">"eng_type"</span>, <span class="st">"hybrid"</span>, <span class="st">"gear_num"</span>, <span class="st">"tran"</span>, <span class="st">"mpg_city"</span>, <span class="st">"fuel_type"</span>, <span class="st">"mpg_hw"</span>, <span class="st">"class"</span>, <span class="st">"ID"</span>, <span class="st">"make"</span>, <span class="st">"model_year"</span>, <span class="st">"year"</span>, <span class="st">"hp"</span>, <span class="st">"torque"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Restrict the data to cars whose Fuel Type is "Gasoline".</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>gasoline_cars <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, fuel_type <span class="sc">==</span> <span class="st">"Gasoline"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Fit a linear regression model predicting MPG on the highway.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg_hw <span class="sc">~</span> hp <span class="sc">+</span> torque <span class="sc">+</span> height <span class="sc">+</span> length <span class="sc">+</span> width <span class="sc">+</span> <span class="fu">as.factor</span>(year), <span class="at">data =</span> gasoline_cars)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>
+Call:
+lm(formula = mpg_hw ~ hp + torque + height + length + width + 
+    as.factor(year), data = gasoline_cars)
+
+Coefficients:
+        (Intercept)                   hp               torque  
+         32.2926630            0.0163556           -0.0507425  
+             height               length                width  
+          0.0099079            0.0017290           -0.0003343  
+as.factor(year)2010  as.factor(year)2011  as.factor(year)2012  
+         -0.4539681            0.1711016            1.3029279  </code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>The coefficient of the estimator “horsepower” is positive. This implies the higher horsepower, the higher mpg on the highway when other variables are held constant. This accords with common sense. Also, the coefficient is relatively small, which means that the estimator “horsepower” does not have a great impact on the response “mpg on the highway”.</p></li>
+<li><p>Refit the model (with&nbsp;<code>lm</code>) and generate an interaction plot, showing how the relationship between horsepower and MPG changes as torque changes. Choose reasonable values of horsepower, and show lines for three different reasonable values of torque.</p>
+<p>We want to choose three different values of torque that are representative of what most cars have. In fact, we select the top three values of torque that are most common among cars.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>model_with_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg_hw <span class="sc">~</span> hp <span class="sc">*</span> torque <span class="sc">+</span> length <span class="sc">+</span> width <span class="sc">+</span> height <span class="sc">+</span> <span class="fu">as.factor</span>(year), <span class="at">data =</span> gasoline_cars)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the occurrences of each torque value and select the top three</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>top_torque_values <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(gasoline_cars<span class="sc">$</span>torque), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data to include cars with the top three torque values</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> gasoline_cars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(torque <span class="sc">%in%</span> top_torque_values)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the interaction plot</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.factor =</span> filtered_data<span class="sc">$</span>hp, </span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace.factor =</span> filtered_data<span class="sc">$</span>torque, </span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> <span class="fu">predict</span>(model_with_interaction, <span class="at">newdata =</span> filtered_data),</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> mean, </span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"horsepower"</span>, </span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"MPG on highway"</span></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Problem-Set-2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The lines are not parallel and cross or intersect at some point, which indicates that there is an interaction effect between “horsepower” and “torque”. This means that the relationship between “horsepower” and “mpg on highway” depends on the value of “torque”.</p></li>
+<li><p>Calculate <span class="math inline">\(\hat{\beta}\)</span> from d.&nbsp;manually (without using <code>lm</code>) by first creating a proper design matrix, then using matrix algebra to estimate <span class="math inline">\(\beta\)</span>. Confirm that you get the same result as <code>lm</code> did prior.</p></li>
+</ol>
 </section>
 
 </main>
